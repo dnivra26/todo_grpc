@@ -9,7 +9,7 @@ type Server struct {
 }
 
 func (s *Server) CreateTodo(ctx context.Context, createTodoRequest *proto.CreateTodoRequest) (*proto.CreateTodoResponse, error) {
-	return &proto.CreateTodoResponse{Id: "new id"}, nil
+	return &proto.CreateTodoResponse{Id: "1"}, nil
 }
 
 func (s *Server) GetTodo(ctx context.Context, request *proto.GetTodoRequest) (*proto.GetTodoResponse, error) {
