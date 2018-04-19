@@ -10,13 +10,17 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-func TestServer_GetTodo(t *testing.T) {
+func getDB() (*gorm.DB) {
 	dbDSN := fmt.Sprintf("user=%s password=%s DB.name=gtd dbname=gtd port=5432 sslmode=disable", "gtd", "password")
 	db, err := gorm.Open("postgres", dbDSN)
 	if err != nil {
 		fmt.Println(err)
 		panic("failed to connect database")
 	}
+	return db
+}
+func TestServer_GetTodo(t *testing.T) {
+	db := getDB()
 	defer db.Close()
 
 	server := Server{db}
@@ -33,12 +37,7 @@ func TestServer_GetTodo(t *testing.T) {
 }
 
 func TestServer_CreateTodo(t *testing.T) {
-	dbDSN := fmt.Sprintf("user=%s password=%s DB.name=gtd dbname=gtd port=5432 sslmode=disable", "gtd", "password")
-	db, err := gorm.Open("postgres", dbDSN)
-	if err != nil {
-		fmt.Println(err)
-		panic("failed to connect database")
-	}
+	db := getDB()
 	defer db.Close()
 
 	server := Server{db}
