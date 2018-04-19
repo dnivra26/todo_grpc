@@ -3,29 +3,28 @@ package service
 import (
 	"golang.org/x/net/context"
 	"todo_proto/pb/proto"
-	"github.com/jinzhu/gorm"
+	db2 "todo_grpc/db"
 	"strconv"
 )
 
 type Server struct {
-	db *gorm.DB
+	dao *db2.TodoDao
 }
 
-//type Todo struct {
-//	gorm.Model
-//	Id string
-//	Title string
-//	Status bool
-//}
+func NewServer() *Server {
+	return &Server{db2.NewTodoDao()}
+}
 
 func (s *Server) CreateTodo(ctx context.Context, createTodoRequest *proto.CreateTodoRequest) (*proto.CreateTodoResponse, error) {
+
 	todo := createTodoRequest.Todo
-	create := s.db.Create(todo)
-	return &proto.CreateTodoResponse{Id: strconv.Itoa(int(create.RowsAffected))}, nil
+
+	rowsAffected := s.dao.CreateTodo(todo)
+
+	return &proto.CreateTodoResponse{Id: strconv.Itoa(int(rowsAffected))}, nil
 }
 
 func (s *Server) GetTodo(ctx context.Context, request *proto.GetTodoRequest) (*proto.GetTodoResponse, error) {
-	var todo proto.Todo
-	s.db.First(&todo, request.Id)
+	todo := s.dao.GetTodo(request.Id)
 	return &proto.GetTodoResponse{Todo: &todo}, nil
 }
