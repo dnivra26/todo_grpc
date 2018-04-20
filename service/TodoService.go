@@ -19,12 +19,20 @@ func (s *Server) CreateTodo(ctx context.Context, createTodoRequest *proto.Create
 
 	todo := createTodoRequest.Todo
 
-	rowsAffected := s.dao.CreateTodo(todo)
+	rowsAffected, err := s.dao.CreateTodo(todo)
+	if (err != nil) {
+		return nil, err
+	} else {
+		return &proto.CreateTodoResponse{Id: strconv.Itoa(int(rowsAffected))}, nil
+	}
 
-	return &proto.CreateTodoResponse{Id: strconv.Itoa(int(rowsAffected))}, nil
 }
 
 func (s *Server) GetTodo(ctx context.Context, request *proto.GetTodoRequest) (*proto.GetTodoResponse, error) {
-	todo := s.dao.GetTodo(request.Id)
-	return &proto.GetTodoResponse{Todo: &todo}, nil
+	todo, err := s.dao.GetTodo(request.Id)
+	if (err != nil) {
+		return nil, err
+	} else {
+		return &proto.GetTodoResponse{Todo: &todo}, nil
+	}
 }

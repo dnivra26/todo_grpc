@@ -24,13 +24,15 @@ func getDB() (*gorm.DB) {
 func NewTodoDao() *TodoDao {
 	return &TodoDao{db: getDB()}
 }
-func (todoDao *TodoDao) CreateTodo(todo *proto.Todo) (int) {
+func (todoDao *TodoDao) CreateTodo(todo *proto.Todo) (int, error) {
 	result := todoDao.db.Create(&todo)
-	return int(result.RowsAffected)
+	err := result.Error
+	return int(result.RowsAffected), err
 }
 
-func (todoDao *TodoDao) GetTodo(id string) (proto.Todo) {
+func (todoDao *TodoDao) GetTodo(id string) (proto.Todo, error) {
 	var todo proto.Todo
-	todoDao.db.First(&todo, id)
-	return todo
+	result := todoDao.db.First(&todo, id)
+	err := result.Error
+	return todo, err
 }

@@ -25,7 +25,7 @@ func TestServer_GetTodo(t *testing.T) {
 
 	server := NewServer()
 
-	todo := proto.Todo{Id: "111", Title: "second todo", Status: true}
+	todo := proto.Todo{Id: "112341", Title: "second todo", Status: true}
 	server.CreateTodo(context.Background(), &proto.CreateTodoRequest{Todo: &todo})
 
 	response, error := server.GetTodo(context.Background(), &proto.GetTodoRequest{Id: todo.Id})
@@ -41,7 +41,7 @@ func TestServer_CreateTodo(t *testing.T) {
 	defer db.Close()
 
 	server := NewServer()
-	todo := proto.Todo{Id: "100", Title: "", Status: true}
+	todo := proto.Todo{Id: "176500", Title: "", Status: true}
 	response, error := server.CreateTodo(context.Background(), &proto.CreateTodoRequest{Todo: &todo})
 
 	assert.Equal(t, "1", response.Id)
