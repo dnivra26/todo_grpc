@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: todo-grpc
+  namespace: todo-grpc
+  labels:
+    app: todo-grpc
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todo-grpc
+  template:
+    metadata:
+      labels:
+        app: todo-grpc
+    spec:
+      containers:
+      - name: todo-grpc
+        image: dnivra26/todo_grpc:0.1
+        imagePullPolicy: Always
+        env:
+          - name: DB_HOST
+            value: todo-grpc-postgresql

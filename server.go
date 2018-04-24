@@ -11,10 +11,11 @@ import (
 	"google.golang.org/grpc/reflection"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"os"
 )
 
 func main() {
-	dbDSN := fmt.Sprintf("user=%s password=%s DB.name=gtd dbname=gtd port=5432 sslmode=disable", "gtd", "password")
+	dbDSN := fmt.Sprintf("user=%s password=%s host=%s DB.name=gtd dbname=gtd port=5432 sslmode=disable", "gtd", "password", os.Getenv("DB_HOST"))
 	db, err := gorm.Open("postgres", dbDSN)
 	if err != nil {
 		fmt.Println(err)

@@ -3,7 +3,7 @@ package db
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
-	"todo_proto/pb/proto"
+	"github.com/dnivra26/todo_proto/pb/proto"
 )
 
 func TestNewTodoDao_GetTodo(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"testing"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/net/context"
-	"todo_proto/pb/proto"
+	"github.com/dnivra26/todo_proto/pb/proto"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"

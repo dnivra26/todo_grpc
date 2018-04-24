@@ -1,0 +1,3 @@
+postgresql:
+  postgresUser: gtd
+  password: password
