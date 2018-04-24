@@ -18,7 +18,15 @@ spec:
       containers:
       - name: todo-grpc
         image: dnivra26/todo_grpc:0.1
+        ports:
+          - containerPort: 7777
+            protocol: TCP
+            name: grpc
         imagePullPolicy: Always
         env:
           - name: DB_HOST
-            value: todo-grpc-postgresql
+            value: todo-grpc-postgresql.default
+          - name: todo_grpc_hello_host
+            value: todo-grpc-hello.todo-grpc-hello
+          - name: todo_grpc_hello_port
+            value: "7778"
