@@ -5,6 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"fmt"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"os"
 )
 
 type TodoDao struct {
@@ -12,7 +13,7 @@ type TodoDao struct {
 }
 
 func getDB() (*gorm.DB) {
-	dbDSN := fmt.Sprintf("user=%s password=%s DB.name=gtd dbname=gtd port=5432 sslmode=disable", "gtd", "password")
+	dbDSN := fmt.Sprintf("user=%s password=%s host=%s DB.name=gtd dbname=gtd port=5432 sslmode=disable", "gtd", "password", os.Getenv("DB_HOST"))
 	db, err := gorm.Open("postgres", dbDSN)
 	if err != nil {
 		fmt.Println(err)
