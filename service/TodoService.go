@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"google.golang.org/grpc"
 	"log"
+	"fmt"
+	"os"
 )
 
 type Server struct {
@@ -41,9 +43,10 @@ func (s *Server) GetTodo(ctx context.Context, request *proto.GetTodoRequest) (*p
 }
 
 func getHello() (string, error) {
-	conn, e := grpc.Dial(":7778", grpc.WithInsecure())
+	target := fmt.Sprintf("%s:%s", os.Getenv("todo_grpc_hello_host"), os.Getenv("todo_grpc_hello_port"))
+	conn, e := grpc.Dial(target, grpc.WithInsecure())
 	if e != nil {
-	log.Fatalf("did not connect: %s", e)
+		log.Fatalf("did not connect: %s", e)
 	}
 	defer conn.Close()
 	client := proto.NewPingClient(conn)
