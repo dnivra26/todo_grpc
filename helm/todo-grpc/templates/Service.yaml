@@ -8,5 +8,5 @@ spec:
     app: todo-grpc
   ports:
   - protocol: TCP
-    port: 7777
-    targetPort: 7777
+    port: 8787
+    targetPort: 8787
