@@ -2,8 +2,8 @@ package service
 
 import (
 	"golang.org/x/net/context"
-	"todo_proto/pb/proto"
-	db2 "todo_grpc/db"
+	"github.com/dnivra26/todo_proto/pb/proto"
+	db2 "github.com/dnivra26/todo_grpc/db"
 	"strconv"
 	"google.golang.org/grpc"
 	"log"

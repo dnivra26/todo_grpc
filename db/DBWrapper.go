@@ -1,7 +1,7 @@
 package db
 
 import (
-	"todo_proto/pb/proto"
+	"github.com/dnivra26/todo_proto/pb/proto"
 	"github.com/jinzhu/gorm"
 	"fmt"
 	_ "github.com/jinzhu/gorm/dialects/postgres"

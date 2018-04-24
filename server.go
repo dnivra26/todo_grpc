@@ -6,8 +6,8 @@ import (
 	"log"
 	"google.golang.org/grpc"
 
-	"todo_proto/pb/proto"
-	"todo_grpc/service"
+	"github.com/dnivra26/todo_proto/pb/proto"
+	"github.com/dnivra26/todo_grpc/service"
 	"google.golang.org/grpc/reflection"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
